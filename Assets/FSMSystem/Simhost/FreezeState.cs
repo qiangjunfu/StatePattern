@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace FSMSystem
+namespace FSMSystem.Simhost
 {
     public class FreezeState : StateBase
     {
