@@ -5,7 +5,11 @@ using UnityEngine;
 
 namespace FSMSystem
 {
-    public class FSMManager
+    /// <summary>
+    /// 状态机管理器
+    /// </summary>
+    /// <typeparam name="T">执行和判断需要的参数</typeparam>
+    public class FSMManager<T>
     {
         /// <summary>
         /// 当前状态ID
@@ -14,21 +18,21 @@ namespace FSMSystem
         /// <summary>
         /// 当前状态
         /// </summary>
-        private StateBase currentState;
+        private StateBase<T> currentState;
         /// <summary>
         /// 存储的状态字典
         /// </summary>
-        private Dictionary<StateID, StateBase> stateDic = new Dictionary<StateID, StateBase>();
+        private Dictionary<StateID, StateBase<T>> stateDic = new Dictionary<StateID, StateBase<T>>();
 
 
 
-        public void Update(Data data)
+        public void Update(T t)
         {
-            currentState.Act(data);
-            currentState.Reason(data);
+            currentState.Act(t);
+            currentState.Reason(t);
         }
 
-        public void InitState(StateBase state)
+        public void InitState(StateBase<T> state)
         {
             if (currentState == null)
             {
@@ -62,7 +66,7 @@ namespace FSMSystem
             }
 
             currentState.BeforeLeave();
-            StateBase state = stateDic[id];
+            StateBase<T> state = stateDic[id];
             currentState = state;
             currentStateID = state.StateID;
             currentState.BeforeEnter();
@@ -71,7 +75,7 @@ namespace FSMSystem
         /// <summary>
         /// 添加状态
         /// </summary>
-        public void AddState(StateBase state)
+        public void AddState(StateBase<T> state)
         {
             if (state == null)
             {

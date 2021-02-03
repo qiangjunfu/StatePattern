@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace FSMSystem.Simhost
 {
-    public class DefreezeState : StateBase
+    public class DefreezeState : StateBase<Data >
     {
-        public DefreezeState(FSMManager fsm) : base(fsm)
+        public DefreezeState(FSMManager<Data> fsm) : base(fsm)
         {
             stateID = StateID.DefreezeState;
         }

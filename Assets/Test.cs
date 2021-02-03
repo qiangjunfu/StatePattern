@@ -8,7 +8,7 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     [SerializeField] private Data data;
-    private FSMManager fsm;
+    private FSMManager<Data> fsm;
 
 
     private void Awake()
@@ -19,17 +19,17 @@ public class Test : MonoBehaviour
 
     void Start()
     {
-        fsm = new FSMManager();
+        fsm = new FSMManager<Data>();
 
-        StateBase defreezeState = new DefreezeState(fsm);
+        StateBase<Data> defreezeState = new DefreezeState(fsm);
         defreezeState.AddTransition(Transition.PressFreeze, StateID.FreezeState);
         defreezeState.AddTransition(Transition.PressReset, StateID.ResetState);
 
-        StateBase freezeState = new FreezeState(fsm);
+        StateBase<Data> freezeState = new FreezeState(fsm);
         freezeState.AddTransition(Transition.PressDefreeze, StateID.DefreezeState);
         freezeState.AddTransition(Transition.PressReset, StateID.ResetState);
 
-        StateBase resetState = new ResetState(fsm);
+        StateBase<Data> resetState = new ResetState(fsm);
         resetState.AddTransition(Transition.PressDefreeze, StateID.DefreezeState);
         resetState.AddTransition(Transition.PressFreeze, StateID.FreezeState);
 

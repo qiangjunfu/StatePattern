@@ -73,23 +73,25 @@ namespace FSMSystem
         ChaseUpEnemy
     }
 
+
     /// <summary>
     /// 状态基类
     /// </summary>
-    public abstract class StateBase
+    /// <typeparam name="T">执行和判断需要的参数</typeparam>
+    public abstract class StateBase<T>
     {
-        protected FSMManager fsm;
+        protected FSMManager<T> fsm;
         protected StateID stateID;
         protected Dictionary<Transition, StateID> transStateDic = new Dictionary<Transition, StateID>();
 
         public StateID StateID { get => stateID; }
-        public StateBase(FSMManager fsm) { this.fsm = fsm; }
+        public StateBase(FSMManager<T> fsm) { this.fsm = fsm; }
 
 
         public virtual void BeforeEnter() { }
         public virtual void BeforeLeave() { }
-        public abstract void Act(Data data);
-        public abstract void Reason(Data data);
+        public abstract void Act(T t);
+        public abstract void Reason(T t);
 
 
         /// <summary>

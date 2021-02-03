@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace FSMSystem.Simhost
 {
-    public class ResetState : StateBase
+    public class ResetState : StateBase<Data>
     {
-        public ResetState(FSMManager fsm) : base(fsm)
+        public ResetState(FSMManager<Data> fsm) : base(fsm)
         {
             stateID = StateID.ResetState;
         }
